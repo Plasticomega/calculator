@@ -1,10 +1,15 @@
-.calculator{
+body{
     background-color: black;
+}
+
+.calculator{
+    background-color: maroon;
     width: 300px;
     display: flex;
     margin: auto;
     flex-direction: column;
     color:white;
+    border-radius: 10px;
 }
 
 .row1,.row2,.row3,.row3,.row4,.row5{
@@ -14,14 +19,15 @@
 
 }
 
-.row1 div,.row2 div,.row3 div,.row4 div,.row5 div{
-    background-color: gray;
+.row1 button,.row2 button,.row3 button,.row4 button,.row5 button{
+    background-color: pink;
     width: 60px;
     justify-content: center;
     display: flex;
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
+    color: white;
 }
 
 
@@ -30,8 +36,44 @@
     width: 280px ;
 }
 
-.number-0{
-    flex-grow: 0;
-    width: 60px;
+.row5 {
+    display: flex;
+    justify-content: space-between; /* Spread buttons out */
 }
+
+.number-0 {
+    flex: 1;  /* Make the button take up more space */
+    margin: 5px;
+    padding: 10px;
+    background-color: gray;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.decimalPoint {
+    flex: 1;  /* Same size as other buttons */
+    margin: 5px;
+    padding: 10px;
+    background-color: gray;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.equalTo {
+    flex: 2;  
+    margin: 5px;
+    padding: 10px;
+    background-color: gray;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.screen{
+    margin: 10px;
+    background-color:green;
+    height: 100px;
+    width: 280px;
+    border-radius: 10px;
+}
+
 
