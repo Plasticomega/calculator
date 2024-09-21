@@ -6,19 +6,19 @@ let istypingfirst = true
 let istypingsecond = false
 
 function add(firstNumber,secondNumber){
-return parseInt(firstNumber) + parseInt(secondNumber)
+return parseFloat(firstNumber) + parseFloat(secondNumber)
 }
 
 function subtract(firstNumber,secondNumber){
-return parseInt(firstNumber) - parseInt(secondNumber)
+return parseFloat(firstNumber) - parseFloat(secondNumber)
 }
 
 function multiply(firstNumber,secondNumber){
-return parseInt(firstNumber) * parseInt(secondNumber)
+return parseFloat(firstNumber) * parseFloat(secondNumber)
 }
 
 function divide(firstNumber,secondNumber){
-return parseInt(firstNumber) / parseInt(secondNumber)
+return parseFloat(firstNumber) / parseFloat(secondNumber)
 }
 
 function operate(firstNumber,operator,secondNumber){
@@ -61,20 +61,32 @@ for(let i=0;i< operators.length;i++){
         let containsOperator = operations.some(op => input_display.innerHTML.includes(op));
         if (!containsOperator) {
             input_display.innerHTML += operators[i].innerHTML;
+        }else if(containsOperator && firstNumber.length > 0 && secondNumber >0){
+            findsolution()
+            input_display.innerHTML += operators[i].innerHTML;
+            istypingfirst = false
         }
         opeartor = operators[i].textContent        
     });    
 }
+function findsolution(){
+    let solution
+    if(opeartor == '÷' && secondNumber == '0'){
+        input_display.textContent ="you cannot divide by zero"
+    }else{
+        solution = operate(firstNumber,opeartor,secondNumber)
+            input_display.innerHTML = solution
+            firstNumber = input_display.innerHTML
+            secondNumber = ''
+            istypingfirst = true
+    }
+    
+
+}
+
 
 let equalTo = document.querySelector('.equalTo')
-
-equalTo.addEventListener('click',()=>{
-    let solution = operate(firstNumber,opeartor,secondNumber)
-    input_display.innerHTML = solution
-    firstNumber = input_display.innerHTML
-    secondNumber = ''
-    istypingfirst = true
-})
+equalTo.addEventListener('click',findsolution)
 
 
 let clearOne = document.querySelector('.clearOne')
@@ -83,4 +95,18 @@ clearOne.addEventListener('click',()=>{
     if(istypingfirst){
         firstNumber = firstNumber.slice(0,firstNumber.length-1)
     }
+    if(istypingsecond){
+        secondNumber = secondNumber.slice(0,secondNumber.length-1)
+    }
 })
+
+let clearAll = document.querySelector('.clearAll')
+clearAll.addEventListener('click',()=>{
+    input_display.textContent = ''
+    firstNumber = ''
+    secondNumber = ''
+    opeartor = undefined
+    istypingfirst = true
+})
+
+
