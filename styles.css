@@ -1,3 +1,37 @@
-body{
+.calculator{
     background-color: black;
+    width: 300px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    color:white;
 }
+
+.row1,.row2,.row3,.row3,.row4,.row5{
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+
+.row1 div,.row2 div,.row3 div,.row4 div,.row5 div{
+    background-color: gray;
+    width: 60px;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+
+.allbuttons{
+    padding: 10px;
+    width: 280px ;
+}
+
+.number-0{
+    flex-grow: 0;
+    width: 60px;
+}
+
