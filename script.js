@@ -1,31 +1,28 @@
 function add(firstNumber,secondNumber){
-return firstNumber + secondNumber
+return parseInt(firstNumber) + parseInt(secondNumber)
 }
 
 function subtract(firstNumber,secondNumber){
-return firstNumber - secondNumber
+return parseInt(firstNumber) - parseInt(secondNumber)
 }
 
 function multiply(firstNumber,secondNumber){
-return firstNumber * secondNumber
+return parseInt(firstNumber) * parseInt(secondNumber)
 }
 
 function divide(firstNumber,secondNumber){
-return firstNumber / secondNumber
+return parseInt(firstNumber) / parseInt(secondNumber)
 }
 
-let firstNumber
-let secondNumber
-let operator
-
-function operate(operator,firstNumber,secondNumber){
-    if(operator = addition){
-        add(firstNumber,secondNumber)
-    }else if(operator = subtraction){
-        subtract(firstNumber,secondNumber)
-    }else if(operator = multiplication){
-        multiply(firstNumber,secondNumber)
-    }else if(operator = division){
-        divide(firstNumber,secondNumber)
+function operate(firstNumber,operator,secondNumber){
+    if(operator == '+'){
+        return add(firstNumber,secondNumber)
+    }else if(operator == '-'){
+        return subtract(firstNumber,secondNumber)
+    }else if(operator == '*'){
+        return multiply(firstNumber,secondNumber)
+    }else if(operator == '/'){
+        return divide(firstNumber,secondNumber)
     }
 }
+
