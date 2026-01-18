@@ -5,45 +5,46 @@ let opeartor
 let istypingfirst = true
 let istypingsecond = false
 
-function add(firstNumber,secondNumber){
-return parseFloat(firstNumber) + parseFloat(secondNumber)
+function add(firstNumber, secondNumber) {
+	return parseFloat(firstNumber) + parseFloat(secondNumber)
 }
 
-function subtract(firstNumber,secondNumber){
-return parseFloat(firstNumber) - parseFloat(secondNumber)
+function subtract(firstNumber, secondNumber) {
+	return parseFloat(firstNumber) - parseFloat(secondNumber)
 }
 
-function multiply(firstNumber,secondNumber){
-return parseFloat(firstNumber) * parseFloat(secondNumber)
+function multiply(firstNumber, secondNumber) {
+	return parseFloat(firstNumber) * parseFloat(secondNumber)
 }
 
-function divide(firstNumber,secondNumber){
-return parseFloat(firstNumber) / parseFloat(secondNumber)
+function divide(firstNumber, secondNumber) {
+	return parseFloat(firstNumber) / parseFloat(secondNumber)
 }
 
-function operate(firstNumber,operator,secondNumber){
-    if(operator == '+'){
-        return add(firstNumber,secondNumber)
-    }else if(operator == '-'){
-        return subtract(firstNumber,secondNumber)
-    }else if(operator == '×'){
-        return multiply(firstNumber,secondNumber)
-    }else if(operator == '÷'){
-        return divide(firstNumber,secondNumber)
-    }
+function operate(firstNumber, operator, secondNumber) {
+	if (operator == '+') {
+		return add(firstNumber, secondNumber)
+	} else if (operator == '-') {
+		return subtract(firstNumber, secondNumber)
+	} else if (operator == '×') {
+		return multiply(firstNumber, secondNumber)
+	} else if (operator == '÷') {
+		return divide(firstNumber, secondNumber)
+	}
 }
 
 let input_display = document.querySelector('.screen')
 let number = document.querySelectorAll('#number')
 
-for(let i=0;i < number.length;i++){
-    number[i].addEventListener('click',()=>{input_display.innerHTML += (number[i].innerHTML);
-        if(istypingfirst){
-            firstNumber += number[i].textContent
-        }else if(istypingsecond){
-            secondNumber += number[i].textContent
-        }
-    })
+for (let i = 0; i < number.length; i++) {
+	number[i].addEventListener('click', () => {
+		input_display.innerHTML += (number[i].innerHTML);
+		if (istypingfirst) {
+			firstNumber += number[i].textContent
+		} else if (istypingsecond) {
+			secondNumber += number[i].textContent
+		}
+	})
 }
 
 // take the first value - done
@@ -52,61 +53,151 @@ for(let i=0;i < number.length;i++){
 // write a condition so that if first value !== '' and second value !== '' then operate those two first
 
 let operators = document.querySelectorAll('#operator')
-let operations = ['+','-','÷','×']
-for(let i=0;i< operators.length;i++){
-    operators[i].addEventListener('click',()=>{
-        istypingfirst = false
-        istypingsecond = true
-        console.log(firstNumber)
-        let containsOperator = operations.some(op => input_display.innerHTML.includes(op));
-        if (!containsOperator) {
-            input_display.innerHTML += operators[i].innerHTML;
-        }else if(containsOperator && firstNumber.length > 0 && secondNumber >0){
-            findsolution()
-            input_display.innerHTML += operators[i].innerHTML;
-            istypingfirst = false
-        }
-        opeartor = operators[i].textContent        
-    });    
+let operations = ['+', '-', '÷', '×']
+for (let i = 0; i < operators.length; i++) {
+	operators[i].addEventListener('click', () => {
+		istypingfirst = false
+		istypingsecond = true
+		console.log(firstNumber)
+		let containsOperator = operations.some(op => input_display.innerHTML.includes(op));
+		if (!containsOperator) {
+			input_display.innerHTML += operators[i].innerHTML;
+		} else if (containsOperator && firstNumber.length > 0 && secondNumber > 0) {
+			findsolution()
+			input_display.innerHTML += operators[i].innerHTML;
+			istypingfirst = false
+		}
+		opeartor = operators[i].textContent
+	});
 }
-function findsolution(){
-    let solution
-    if(opeartor == '÷' && secondNumber == '0'){
-        input_display.textContent ="you cannot divide by zero"
-    }else{
-        solution = operate(firstNumber,opeartor,secondNumber)
-            input_display.innerHTML = solution
-            firstNumber = input_display.innerHTML
-            secondNumber = ''
-            istypingfirst = true
-    }
-    
+function findsolution() {
+	let solution
+	if (opeartor == '÷' && secondNumber == '0') {
+		input_display.textContent = "you cannot divide by zero"
+	} else {
+		solution = operate(firstNumber, opeartor, secondNumber)
+		input_display.innerHTML = solution
+		firstNumber = input_display.innerHTML
+		secondNumber = ''
+		istypingfirst = true
+	}
+
 
 }
 
 
 let equalTo = document.querySelector('.equalTo')
-equalTo.addEventListener('click',findsolution)
+equalTo.addEventListener('click', findsolution)
 
 
 let clearOne = document.querySelector('.clearOne')
-clearOne.addEventListener('click',()=>{
-    input_display.textContent = input_display.textContent.slice(0,input_display.textContent.length - 1);
-    if(istypingfirst){
-        firstNumber = firstNumber.slice(0,firstNumber.length-1)
-    }
-    if(istypingsecond){
-        secondNumber = secondNumber.slice(0,secondNumber.length-1)
-    }
+clearOne.addEventListener('click', () => {
+	input_display.textContent = input_display.textContent.slice(0, input_display.textContent.length - 1);
+	if (istypingfirst) {
+		firstNumber = firstNumber.slice(0, firstNumber.length - 1)
+	}
+	if (istypingsecond) {
+		secondNumber = secondNumber.slice(0, secondNumber.length - 1)
+	}
 })
 
 let clearAll = document.querySelector('.clearAll')
-clearAll.addEventListener('click',()=>{
-    input_display.textContent = ''
-    firstNumber = ''
-    secondNumber = ''
-    opeartor = undefined
-    istypingfirst = true
+clearAll.addEventListener('click', () => {
+	input_display.textContent = ''
+	firstNumber = ''
+	secondNumber = ''
+	opeartor = undefined
+	istypingfirst = true
 })
 
+document.addEventListener("keydown", handleKeyboard);
+
+function handleKeyboard(e) {
+	const key = e.key;
+
+	// numbers 0-9
+	if (!isNaN(key) && key !== " ") {
+		pressNumber(key);
+		return;
+	}
+
+	// decimal point
+	if (key === ".") {
+		pressNumber(".");
+		return;
+	}
+
+	// operators
+	if (key === "+" || key === "-" || key === "*" || key === "/") {
+		const mapped = key === "*" ? "×" : key === "/" ? "÷" : key;
+		pressOperator(mapped);
+		return;
+	}
+
+	// equals
+	if (key === "Enter" || key === "=") {
+		e.preventDefault();
+		findsolution();
+		return;
+	}
+
+	// delete one
+	if (key === "Backspace") {
+		clearLast();
+		return;
+	}
+
+	// clear all
+	if (key === "Escape") {
+		clearEverything();
+		return;
+	}
+}
+
+function pressNumber(val) {
+	input_display.innerHTML += val;
+
+	if (istypingfirst) {
+		firstNumber += val;
+	} else if (istypingsecond) {
+		secondNumber += val;
+	}
+}
+
+function pressOperator(op) {
+	istypingfirst = false;
+	istypingsecond = true;
+
+	let containsOperator = operations.some(o => input_display.innerHTML.includes(o));
+
+	if (!containsOperator) {
+		input_display.innerHTML += op;
+	} else if (containsOperator && firstNumber.length > 0 && secondNumber.length > 0) {
+		findsolution();
+		input_display.innerHTML += op;
+		istypingfirst = false;
+		istypingsecond = true;
+	}
+
+	opeartor = op;
+}
+
+function clearLast() {
+	input_display.textContent = input_display.textContent.slice(0, -1);
+
+	if (istypingfirst) {
+		firstNumber = firstNumber.slice(0, -1);
+	} else if (istypingsecond) {
+		secondNumber = secondNumber.slice(0, -1);
+	}
+}
+
+function clearEverything() {
+	input_display.textContent = "";
+	firstNumber = "";
+	secondNumber = "";
+	opeartor = undefined;
+	istypingfirst = true;
+	istypingsecond = false;
+}
 
