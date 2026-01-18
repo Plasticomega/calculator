@@ -1,79 +1,184 @@
-body{
-    background-color: black;
+body {
+	background-color: black;
 }
 
-.calculator{
-    background-color: maroon;
-    width: 300px;
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    color:white;
-    border-radius: 10px;
+.calculator {
+	width: 19em;
+	height: 30em;
+	display: flex;
+	flex-direction: column;
+	color: white;
+	position: relative;
+	margin: 10em auto 0;
+	background: #ffea00;
 }
 
-.row1,.row2,.row3,.row3,.row4,.row5{
-    display: flex;
-    justify-content: space-evenly;
+.calculator:before,
+.calculator:after {
+	position: absolute;
+	transform-origin: bottom right;
+	content: '';
+}
+
+.calculator:before {
+	top: 0;
+	right: 100%;
+	bottom: 0;
+	width: 1em;
+	background: #c7b600;
+	transform: skewY(135deg);
+}
+
+.calculator:after {
+	top: 100%;
+	right: 5%;
+	left: -5%;
+	height: 1em;
+	background: #7d7301;
+	transform: skewX(135deg);
+}
+
+
+button {
+	all: unset;
+	position: relative;
+}
+
+button:before,
+button:after {
+	position: absolute;
+	transform-origin: bottom right;
+	content: '';
+}
+
+button:before {
+	top: 0;
+	right: 100%;
+	bottom: 0;
+	width: 0.4em;
+	background: #c7b600;
+	transform: skewY(135deg);
+}
+
+button:after {
+	top: 100%;
+	right: 10%;
+	left: -10%;
+	height: 0.4em;
+	background: #7d7301;
+	transform: skewX(135deg);
+}
+
+
+
+.row1,
+.row2,
+.row3,
+.row3,
+.row4,
+.row5 {
+	display: flex;
+	justify-content: space-evenly;
 
 
 }
 
-.row1 button,.row2 button,.row3 button,.row4 button,.row5 button{
-    background-color: pink;
-    width: 60px;
-    justify-content: center;
-    display: flex;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    color: white;
+.row1 button,
+.row2 button,
+.row3 button,
+.row4 button,
+.row5 button {
+	background-color: white;
+	width: 60px;
+	justify-content: center;
+	display: flex;
+	padding: 10px;
+	margin: 5px;
+	color: white;
 }
 
 
-.allbuttons{
-    padding: 10px;
-    width: 280px ;
+.allbuttons {
+	padding: 10px;
+	width: 280px;
 }
+
 
 .row5 {
-    display: flex;
-    justify-content: space-between; /* Spread buttons out */
+	display: flex;
+	justify-content: space-between;
+	/* Spread buttons out */
 }
 
 .number-0 {
-    flex: 1;  /* Make the button take up more space */
-    margin: 5px;
-    padding: 10px;
-    background-color: gray;
-    text-align: center;
-    border-radius: 10px;
+	flex: 1;
+	/* Make the button take up more space */
+	margin: 5px;
+	padding: 10px;
+	background-color: gray;
+	text-align: center;
+}
+
+.number-0:after,
+.decimalPoint:after {
+	left: -8.5%;
+	right: 8.5%;
 }
 
 .decimalPoint {
-    flex: 1;  /* Same size as other buttons */
-    margin: 5px;
-    padding: 10px;
-    background-color: gray;
-    text-align: center;
-    border-radius: 10px;
+	flex: 1;
+	/* Same size as other buttons */
+	margin: 5px;
+	padding: 10px;
+	background-color: gray;
+	text-align: center;
 }
 
 .equalTo {
-    flex: 2;  
-    margin: 5px;
-    padding: 10px;
-    background-color: gray;
-    text-align: center;
-    border-radius: 10px;
+	flex: 2;
+	margin: 5px;
+	padding: 10px;
+	background-color: gray;
+	text-align: center;
+
 }
 
-.screen{
-    margin: 10px;
-    background-color:green;
-    height: 100px;
-    width: 280px;
-    border-radius: 10px;
+.equalTo:after {
+	right: 5%;
+	left: -5%;
+}
+
+.screen {
+	margin: 10px;
+	background-color: green;
+	height: 100px;
+	width: 280px;
+	border-radius: 20px;
 }
 
 
+button {
+	cursor: pointer;
+	transition: transform 0.08s ease;
+}
+
+button::before,
+button::after {
+	transition: all 0.08s ease;
+}
+
+/* pressed effect */
+button:active {
+	transform: translate(-4px, 4px);
+}
+
+/* adjust the 3D sides when pressed */
+button:active::before {
+	width: 0.2em;
+	/* thinner shadow */
+}
+
+button:active::after {
+	height: 0.2em;
+	/* thinner bottom */
+}
