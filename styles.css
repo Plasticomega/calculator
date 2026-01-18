@@ -1,5 +1,5 @@
 body {
-	background-color: black;
+	background-color: #004B49;
 }
 
 .calculator {
@@ -56,7 +56,7 @@ button:before {
 	right: 100%;
 	bottom: 0;
 	width: 0.4em;
-	background: #c7b600;
+	background: #c4939b;
 	transform: skewY(135deg);
 }
 
@@ -65,7 +65,7 @@ button:after {
 	right: 10%;
 	left: -10%;
 	height: 0.4em;
-	background: #7d7301;
+	background: #87656b;
 	transform: skewX(135deg);
 }
 
@@ -88,7 +88,7 @@ button:after {
 .row3 button,
 .row4 button,
 .row5 button {
-	background-color: white;
+	background-color: #ffc0cb;
 	width: 60px;
 	justify-content: center;
 	display: flex;
@@ -150,10 +150,17 @@ button:after {
 
 .screen {
 	margin: 10px;
-	background-color: green;
+	background-color: #0a7a0a;
 	height: 100px;
 	width: 280px;
 	border-radius: 20px;
+	display: flex;
+	justify-content: end;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 30px;
+	align-items: end;
+	font-weight: 800;
 }
 
 
